@@ -16,7 +16,11 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     closeModal.addEventListener('click', function () {
-        createPostModal.style.display = 'none';
+        createPostModal.classList.add('fadeOut'); // Add fadeOut class
+        setTimeout(() => {
+            createPostModal.style.display = 'none';
+            createPostModal.classList.remove('fadeOut'); // Remove fadeOut class
+        }, 500);
     });
 
     postForm.addEventListener('submit', function (event) {
@@ -52,16 +56,22 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
 
         // Append the new post to the post container
-        postContainer.appendChild(newPost);
+        postContainer.insertBefore(newPost, postContainer.firstChild);
+
+        const postCreatedMessage = document.getElementById('postCreatedMessage');
+        postCreatedMessage.style.display = 'block';
 
         // Close the modal
         createPostModal.style.display = 'none';
 
         // Reset the form
         postForm.reset();
+
+        setTimeout(() => {
+            postCreatedMessage.style.display = 'none';
+        }, 3000);
     });
 
-    // Load more click event
     postContainer.addEventListener('click', function (event) {
         if (event.target.classList.contains('load-more') || event.target.classList.contains('post-title')) {
             const title = event.target.getAttribute('data-title');
@@ -77,18 +87,26 @@ document.addEventListener('DOMContentLoaded', function () {
             postDetailModal.style.display = 'flex';
         }
 
-        // Delete post click event
         if (event.target.classList.contains('delete-post')) {
             const titleToDelete = event.target.getAttribute('data-title');
             const postToDelete = document.querySelector(`.post-title[data-title="${titleToDelete}"]`).closest('.post-box');
 
-            // Remove the post from the container
-            postContainer.removeChild(postToDelete);
+            // Add fadeOut class to initiate the animation
+            postToDelete.classList.add('fadeOut');
+
+            // Remove the post after the animation completes
+            setTimeout(() => {
+                postContainer.removeChild(postToDelete);
+            }, 500);
+            
         }
     });
 
-    // Close detail modal
     closeDetailModal.addEventListener('click', function () {
-        postDetailModal.style.display = 'none';
+        postDetailModal.classList.add('fadeOut'); // Add fadeOut class
+        setTimeout(() => {
+            postDetailModal.style.display = 'none';
+            postDetailModal.classList.remove('fadeOut'); // Remove fadeOut class
+        }, 500);
     });
 });

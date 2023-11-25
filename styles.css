@@ -16,6 +16,7 @@ a {
     color: black;
     transition: transform .3s;
     display: inline-block;
+    font-weight:700 ;
 }
 
 a:hover {
@@ -72,6 +73,7 @@ footer {
     gap: 2.5rem;
 }
 
+
 .category {
     background-color: #3498db;
     border: 1px solid #ccc;
@@ -125,6 +127,7 @@ footer {
     background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 .modal-content {
@@ -141,7 +144,30 @@ footer {
     overflow-y: auto;
     max-height: 80vh;
     text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
 }
+
+.modal.fadeOut {
+    animation: fadeOut 0.5s ease-in-out; /* Apply fadeOut animation */
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
 
 .close {
     cursor: pointer;
@@ -156,6 +182,7 @@ footer {
     -webkit-transform: scale(1.7, 1.7);
     transform: scale(1.7, 1.7);
 }
+
 
 .title,
 .category1 {
@@ -203,6 +230,20 @@ footer {
     background-color: #2980b9;
 }
 
+.post-message {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    z-index: 1000;
+}
+
+
 .load-more {
     display: inline-block;
     color: #3498db;
@@ -242,7 +283,13 @@ footer {
     background-color: #c0392b;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 550px) {
+
+    li {
+        display: inline;
+        padding: 5px;
+    }
+
     .post-container {
         grid-template-columns: 1fr;
     }
@@ -251,3 +298,37 @@ footer {
         max-width: 90%;
     }
 }
+
+@media screen and (max-width : 480px){
+    h1{
+        font-size: 30px;
+    }
+
+    li {
+        display: block;
+    }
+
+    ul{
+        padding-right: 5%;
+    }
+    
+}
+
+@media screen and (max-width : 380px){
+    
+    header{
+        padding: 0px;
+        display: flex;
+        text-align: center;
+    }
+
+    .logo{
+        margin-left : 5% ;
+    }
+    
+}
+
+
+
+ 
+
